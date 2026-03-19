@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree View -->
+    <record id="view_resume_cv_tree" model="ir.ui.view">
+        <field name="name">resume.cv.tree</field>
+        <field name="model">resume.cv</field>
+        <field name="arch" type="xml">
+            <list string="CVs">
+                <field name="name"/>
+                <field name="area"/>
+                <field name="file_name"/>
+                <field name="texto" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_resume_cv_form" model="ir.ui.view">
+        <field name="name">resume.cv.form</field>
+        <field name="model">resume.cv</field>
+        <field name="arch" type="xml">
+            <form string="CV">
+                <header>
+                    <button name="action_procesar_cv"
+                            string="Procesar CV"
+                            type="object"
+                            class="btn-primary"
+                            invisible="not file"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="area"/>
+                            <field name="file" filename="file_name" widget="binary"/>
+                            <field name="file_name" invisible="1"/>
+                        </group>
+                    </group>
+                    <separator string="Texto Extraído del PDF"/>
+                    <field name="texto" readonly="1" placeholder="Presiona 'Procesar CV' para extraer el texto del PDF..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_resume_cv" model="ir.actions.act_window">
+        <field name="name">CVs</field>
+        <field name="res_model">resume.cv</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

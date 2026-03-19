@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_resume_consulta_form" model="ir.ui.view">
+        <field name="name">resume.consulta.form</field>
+        <field name="model">resume.consulta</field>
+        <field name="arch" type="xml">
+            <form string="Consulta IA">
+                <header>
+                    <button name="action_consultar_ia"
+                            string="Consultar IA"
+                            type="object"
+                            class="btn-primary"
+                            invisible="not prompt or state == 'processing'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="subject"/>
+                        <h1>
+                            <field name="subject" placeholder="Asunto de la consulta..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Filtros">
+                            <field name="area"/>
+                        </group>
+                    </group>
+                    <separator string="Requerimiento"/>
+                    <field name="prompt" placeholder="Describe el perfil que buscas, experiencia requerida, habilidades, etc..."/>
+                    <separator string="Candidatos Recomendados por la IA" invisible="state != 'done'"/>
+                    <field name="line_ids" invisible="state != 'done'">
+                        <list string="Candidatos" editable="bottom">
+                            <field name="nombre"/>
+                            <field name="telefono"/>
+                            <field name="score"/>
+                            <field name="resumen"/>
+                        </list>
+                    </field>
+                    <separator string="Respuesta Completa de la IA" invisible="state != 'done'"/>
+                    <field name="resultado" readonly="1" invisible="state != 'done'"
+                           placeholder="Aquí aparecerá la respuesta de la IA..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_resume_consulta_tree" model="ir.ui.view">
+        <field name="name">resume.consulta.tree</field>
+        <field name="model">resume.consulta</field>
+        <field name="arch" type="xml">
+            <list string="Consultas">
+                <field name="subject"/>
+                <field name="area"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_resume_consulta" model="ir.actions.act_window">
+        <field name="name">Consultas IA</field>
+        <field name="res_model">resume.consulta</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

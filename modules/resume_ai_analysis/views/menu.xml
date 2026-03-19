@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="menu_resume_ai_root"
+              name="Resume AI"
+              sequence="90"/>
+
+    <!-- CVs -->
+    <menuitem id="menu_resume_cv"
+              name="CVs"
+              parent="menu_resume_ai_root"
+              action="action_resume_cv"
+              sequence="10"/>
+
+    <!-- Consultas -->
+    <menuitem id="menu_resume_consulta"
+              name="Consultas"
+              parent="menu_resume_ai_root"
+              action="action_resume_consulta"
+              sequence="20"/>
+
+</odoo>
