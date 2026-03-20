@@ -132,11 +132,16 @@ Devuelve SOLO JSON válido en este formato, sin texto adicional, sin markdown, s
         _logger.info('Iniciando limpieza y parseo del JSON recibido de Gemini.')
         candidatos = []
         try:
-            # Limpiar posibles bloques de markdown
             texto_limpio = respuesta_texto.strip()
-            if texto_limpio.startswith('```'):
-                lineas = texto_limpio.split('\n')
-                texto_limpio = '\n'.join(lineas[1:-1])
+            
+            # Extraer solo la parte que parece un array JSON
+            inicio = texto_limpio.find('[')
+            fin = texto_limpio.rfind(']')
+            
+            if inicio != -1 and fin != -1:
+                texto_limpio = texto_limpio[inicio:fin+1]
+            else:
+                raise ValueError('No se encontró un arreglo JSON en la respuesta de la IA.')
 
             candidatos = json.loads(texto_limpio)
             if not isinstance(candidatos, list):
