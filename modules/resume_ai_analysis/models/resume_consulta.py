@@ -85,9 +85,11 @@ class ResumeConsulta(models.Model):
         contexto = '\n\n'.join(partes_contexto)
         _logger.debug('Contexto de CVs construido correctamente. Longitud total: %d caracteres.', len(contexto))
 
+        num_candidatos = min(3, len(cvs))
+        
         prompt_final = f"""Eres un reclutador experto.
 
-Analiza los siguientes CVs y devuelve los 3 mejores candidatos según este requerimiento:
+Analiza los siguientes CVs y devuelve los {num_candidatos} mejores candidatos según este requerimiento:
 
 REQUERIMIENTO:
 {self.prompt}
