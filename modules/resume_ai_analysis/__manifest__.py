@@ -5,7 +5,7 @@
     'description': 'Sube CVs en PDF, clasifícalos por área y consulta con Gemini de Google para encontrar los mejores candidatos.',
     'author': 'Demo',
     'category': 'Human Resources',
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
     'data': [
         'security/ir.model.access.csv',
         'views/resume_cv_views.xml',

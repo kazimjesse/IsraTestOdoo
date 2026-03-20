@@ -13,6 +13,11 @@
                             type="object"
                             class="btn-primary"
                             invisible="not prompt or state == 'processing'"/>
+                    <button name="action_send_email"
+                            string="Enviar Mail"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state != 'done'"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
                 </header>
                 <sheet>
@@ -34,6 +39,7 @@
                         <list string="Candidatos" editable="bottom">
                             <field name="nombre"/>
                             <field name="telefono"/>
+                            <field name="email"/>
                             <field name="score"/>
                             <field name="resumen"/>
                         </list>

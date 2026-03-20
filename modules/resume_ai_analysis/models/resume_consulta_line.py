@@ -9,5 +9,6 @@ class ResumeConsultaLine(models.Model):
     consulta_id = fields.Many2one('resume.consulta', string='Consulta', ondelete='cascade')
     nombre = fields.Char(string='Nombre del Candidato')
     telefono = fields.Char(string='Teléfono')
+    email = fields.Char(string='Correo Electrónico')
     score = fields.Float(string='Puntuación', digits=(5, 2))
     resumen = fields.Text(string='Resumen')

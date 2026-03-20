@@ -102,6 +102,7 @@ Importante: Debes devolver ÚNICAMENTE un arreglo (lista) en formato JSON válid
   {{
     "nombre": "Nombre del candidato",
     "telefono": "Teléfono",
+    "email": "Correo electrónico",
     "score": 90,
     "resumen": "Breve resumen"
   }}
@@ -161,6 +162,7 @@ Importante: Debes devolver ÚNICAMENTE un arreglo (lista) en formato JSON válid
             lineas.append((0, 0, {
                 'nombre': c.get('nombre', ''),
                 'telefono': c.get('telefono', ''),
+                'email': c.get('email', ''),
                 'score': float(c.get('score', 0)),
                 'resumen': c.get('resumen', ''),
             }))
@@ -172,3 +174,33 @@ Importante: Debes devolver ÚNICAMENTE un arreglo (lista) en formato JSON válid
         })
 
         _logger.info('Parseo exitoso. Consulta %s completada con %d candidatos insertados.', self.subject or self.id, len(lineas))
+
+    def action_send_email(self):
+        self.ensure_one()
+        if not self.line_ids:
+            raise UserError('No hay candidatos para enviar el correo.')
+
+        emails_enviados = 0
+        for line in self.line_ids:
+            if line.email:
+                mail_values = {
+                    'subject': 'Actualización sobre su aplicación',
+                    'body_html': '<p>Felicidades revisamos su aplicación y agendamos una entrevista para la siguiente semana favor de llamar a este numero o presentarse a la siguiente direccion avenidad siempre viva 742 springfield</p>',
+                    'email_to': line.email,
+                }
+                mail = self.env['mail.mail'].sudo().create(mail_values)
+                mail.send()
+                emails_enviados += 1
+
+        if emails_enviados == 0:
+            raise UserError('Ningún candidato tiene un correo electrónico configurado para enviar el mensaje.')
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Correos Enviados',
+                'message': f'Se enviaron {emails_enviados} correos a los candidatos.',
+                'sticky': False,
+            }
+        }
