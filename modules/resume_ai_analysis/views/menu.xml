@@ -4,6 +4,7 @@
     <!-- Root Menu -->
     <menuitem id="menu_resume_ai_root"
               name="Resume AI"
+              web_icon="resume_ai_analysis,static/description/icon.png"
               sequence="90"/>
 
     <!-- CVs -->
