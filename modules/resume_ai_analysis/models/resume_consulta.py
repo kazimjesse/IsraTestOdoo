@@ -29,7 +29,7 @@ def llamar_gemini(prompt, api_key):
         contents=prompt,
         config={
             'temperature': 0.2,
-            'max_output_tokens': 1024,
+            'response_mime_type': 'application/json',
         }
     )
 
@@ -97,14 +97,13 @@ REQUERIMIENTO:
 CVs:
 {contexto}
 
-Devuelve SOLO JSON válido en este formato, sin texto adicional, sin markdown, sin explicaciones:
-
+Importante: Debes devolver ÚNICAMENTE un arreglo (lista) en formato JSON válido, donde cada objeto tenga esta estructura exacta:
 [
   {{
-    "nombre": "",
-    "telefono": "",
-    "score": 0,
-    "resumen": ""
+    "nombre": "Nombre del candidato",
+    "telefono": "Teléfono",
+    "score": 90,
+    "resumen": "Breve resumen"
   }}
 ]"""
 
