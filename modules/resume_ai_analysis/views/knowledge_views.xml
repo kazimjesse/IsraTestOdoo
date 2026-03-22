@@ -26,21 +26,21 @@
         </field>
     </record>
 
-    <record id="view_knowledge_document_tree" model="ir.ui.view">
-        <field name="name">knowledge.document.tree</field>
+    <record id="view_knowledge_document_list" model="ir.ui.view">
+        <field name="name">knowledge.document.list</field>
         <field name="model">knowledge.document</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_knowledge_document" model="ir.actions.act_window">
         <field name="name">Documentos Oficiales</field>
         <field name="res_model">knowledge.document</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Consulta View -->
@@ -68,21 +68,21 @@
         </field>
     </record>
 
-    <record id="view_knowledge_consulta_tree" model="ir.ui.view">
-        <field name="name">knowledge.consulta.tree</field>
+    <record id="view_knowledge_consulta_list" model="ir.ui.view">
+        <field name="name">knowledge.consulta.list</field>
         <field name="model">knowledge.consulta</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="prompt"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="action_knowledge_consulta" model="ir.actions.act_window">
         <field name="name">Chat (Consultas base de conocimiento)</field>
         <field name="res_model">knowledge.consulta</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
