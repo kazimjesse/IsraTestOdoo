@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Document View -->
+    <record id="view_knowledge_document_form" model="ir.ui.view">
+        <field name="name">knowledge.document.form</field>
+        <field name="model">knowledge.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_procesar_documento" string="Procesar y Guardar en Qdrant" type="object" class="oe_highlight" invisible="state == 'processed'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="file" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Texto Extraído">
+                            <field name="texto" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_knowledge_document_tree" model="ir.ui.view">
+        <field name="name">knowledge.document.tree</field>
+        <field name="model">knowledge.document</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_knowledge_document" model="ir.actions.act_window">
+        <field name="name">Documentos Oficiales</field>
+        <field name="res_model">knowledge.document</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Consulta View -->
+    <record id="view_knowledge_consulta_form" model="ir.ui.view">
+        <field name="name">knowledge.consulta.form</field>
+        <field name="model">knowledge.consulta</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_consultar" string="Preguntar a la IA" type="object" class="oe_highlight" invisible="state == 'done'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="prompt"/>
+                    </group>
+                    <notebook>
+                        <page string="Respuesta">
+                            <field name="resultado" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_knowledge_consulta_tree" model="ir.ui.view">
+        <field name="name">knowledge.consulta.tree</field>
+        <field name="model">knowledge.consulta</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="prompt"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_knowledge_consulta" model="ir.actions.act_window">
+        <field name="name">Chat (Consultas base de conocimiento)</field>
+        <field name="res_model">knowledge.consulta</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

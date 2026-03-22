@@ -21,4 +21,17 @@
               action="action_resume_consulta"
               sequence="20"/>
 
+    <!-- Knowledge Base -->
+    <menuitem id="menu_knowledge_document"
+              name="Base de Conocimiento (Qdrant)"
+              parent="menu_resume_ai_root"
+              action="action_knowledge_document"
+              sequence="30"/>
+
+    <menuitem id="menu_knowledge_consulta"
+              name="Chat / Asistente"
+              parent="menu_resume_ai_root"
+              action="action_knowledge_consulta"
+              sequence="40"/>
+
 </odoo>

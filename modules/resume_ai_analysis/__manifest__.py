@@ -10,6 +10,7 @@
         'security/ir.model.access.csv',
         'views/resume_cv_views.xml',
         'views/resume_consulta_views.xml',
+        'views/knowledge_views.xml',
         'views/menu.xml',
     ],
     'installable': True,

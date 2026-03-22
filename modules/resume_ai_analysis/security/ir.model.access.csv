@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_resume_cv_all,resume.cv all users,model_resume_cv,,1,1,1,1
 access_resume_consulta_all,resume.consulta all users,model_resume_consulta,,1,1,1,1
 access_resume_consulta_line_all,resume.consulta.line all users,model_resume_consulta_line,,1,1,1,1
+access_knowledge_document_all,knowledge.document all users,model_knowledge_document,,1,1,1,1
+access_knowledge_consulta_all,knowledge.consulta all users,model_knowledge_consulta,,1,1,1,1
