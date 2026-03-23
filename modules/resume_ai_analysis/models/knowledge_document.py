@@ -92,14 +92,14 @@ class KnowledgeDocument(models.Model):
         client = genai.Client(api_key=api_key)
         qd_client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
         
-        collection_name = "knowledge_base"
+        collection_name = "knowledge_base_v2"
         
         # Check if collection exists, if not create
         if not qd_client.collection_exists(collection_name):
             _logger.info('La colección %s no existe en Qdrant. Creándola...', collection_name)
             qd_client.create_collection(
                 collection_name=collection_name,
-                vectors_config=VectorParams(size=768, distance=Distance.COSINE),
+                vectors_config=VectorParams(size=3072, distance=Distance.COSINE),
             )
 
         _logger.info('Enviando fragmentos a Gemini para generar Embeddings...')
@@ -107,7 +107,7 @@ class KnowledgeDocument(models.Model):
         for i, chunk in enumerate(chunks):
             # Generate embedding
             response = client.models.embed_content(
-                model='text-embedding-004',
+                model='gemini-embedding-001',
                 contents=chunk
             )
             vector = response.embeddings[0].values

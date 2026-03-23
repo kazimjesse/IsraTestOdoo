@@ -44,13 +44,13 @@ class KnowledgeConsulta(models.Model):
 
         client = genai.Client(api_key=api_key)
         qd_client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
-        collection_name = "knowledge_base"
+        collection_name = "knowledge_base_v2"
 
         # 1. Embed the prompt
         try:
             _logger.info('Solicitando embedding de la pregunta a Gemini...')
             response_embed = client.models.embed_content(
-                model='text-embedding-004',
+                model='gemini-embedding-001',
                 contents=self.prompt
             )
             query_vector = response_embed.embeddings[0].values
