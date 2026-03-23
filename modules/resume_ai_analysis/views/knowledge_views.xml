@@ -16,11 +16,6 @@
                         <field name="file" filename="file_name"/>
                         <field name="file_name" invisible="1"/>
                     </group>
-                    <notebook>
-                        <page string="Texto Extraído">
-                            <field name="texto" nolabel="1"/>
-                        </page>
-                    </notebook>
                 </sheet>
             </form>
         </field>
