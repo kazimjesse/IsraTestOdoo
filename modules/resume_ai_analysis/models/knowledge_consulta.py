@@ -66,11 +66,12 @@ class KnowledgeConsulta(models.Model):
                 _logger.warning('La colección %s no existe en Qdrant aún.', collection_name)
                 raise UserError('La base de datos Qdrant está vacía. Sube documentos primero.')
                 
-            search_result = qd_client.search(
+            search_response = qd_client.query_points(
                 collection_name=collection_name,
-                query_vector=query_vector,
+                query=query_vector,
                 limit=5
             )
+            search_result = search_response.points
             _logger.info('Búsqueda completada, se encontraron %d posibles fragmentos relevantes.', len(search_result))
         except Exception as e:
             if isinstance(e, UserError):
