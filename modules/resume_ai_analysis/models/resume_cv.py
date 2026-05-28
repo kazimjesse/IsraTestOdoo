@@ -33,7 +33,22 @@ class ResumeCv(models.Model):
             if vals.get('name', 'Nuevo CV') == 'Nuevo CV':
                 count = self.search_count([]) + 1
                 vals['name'] = f'CV {count}'
-        return super().create(vals_list)
+
+        records = super().create(vals_list)
+
+         # Procesar automáticamente cada CV creado
+        for record in records:
+            
+            # Ejecutar procesamiento automático
+            resultado = record.action_procesar_cv()
+            
+            # Imprimir resultado en logs
+            _logger.info('Resultado procesamiento CV %s: %s',
+            record.name,
+            resultado
+            )
+
+        return records
 
     def action_procesar_cv(self):
         self.ensure_one()
